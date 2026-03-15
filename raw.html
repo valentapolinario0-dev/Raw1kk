@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<pre id="code"></pre>
+
+<script>
+
+let data=location.hash.substring(1)
+
+if(data){
+
+let script=decodeURIComponent(escape(atob(data)))
+
+document.getElementById("code").textContent=script
+
+}
+
+</script>
+
+</body>
+</html>
