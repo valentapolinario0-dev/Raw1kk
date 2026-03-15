@@ -2,17 +2,17 @@
 <html>
 <body>
 
-<pre id="code"></pre>
-
 <script>
 
-let data=location.hash.substring(1)
+let data = location.hash.substring(1)
 
 if(data){
 
-let script=decodeURIComponent(escape(atob(data)))
+let script = decodeURIComponent(escape(atob(data)))
 
-document.getElementById("code").textContent=script
+document.open()
+document.write(script)
+document.close()
 
 }
 
