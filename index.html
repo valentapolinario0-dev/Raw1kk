@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>NerphHex RAW Creator</title>
+
+<style>
+body{
+background:#0f0f0f;
+color:white;
+font-family:Arial;
+text-align:center;
+}
+
+textarea{
+width:90%;
+height:250px;
+background:#1a1a1a;
+color:#00ff9c;
+border:1px solid #333;
+padding:10px;
+font-family:monospace;
+}
+
+button{
+padding:10px 20px;
+margin:10px;
+background:#00ff9c;
+border:none;
+cursor:pointer;
+font-weight:bold;
+}
+
+#result{
+margin-top:20px;
+color:#00ff9c;
+word-break:break-all;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⚡ NerphHex RAW Creator</h1>
+
+<textarea id="script" placeholder="cole seu script lua aqui"></textarea>
+
+<br>
+
+<button onclick="createRaw()">CRIAR RAW</button>
+
+<div id="result"></div>
+
+<script>
+async function createRaw(){
+
+let script=document.getElementById("script").value.trim()
+
+if(script===""){
+alert("Digite um script primeiro!")
+return
+}
+
+document.getElementById("result").innerText="Criando RAW..."
+
+try{
+
+let r=await fetch("https://nerphhex.valentapolinario0.workers.dev",{
+method:"POST",
+body:script
+})
+
+let raw=await r.text()
+
+document.getElementById("result").innerHTML=
+`RAW criado:<br><br>
+<a href="${raw}" target="_blank">${raw}</a>
+<br><br>
+<button onclick="copy('${raw}')">COPIAR</button>`
+
+}catch(e){
+
+document.getElementById("result").innerText="Erro ao criar RAW"
+
+}
+
+}
+
+function copy(t){
+navigator.clipboard.writeText(t)
+alert("Link copiado!")
+}
+</script>
+
+</body>
+</html>
