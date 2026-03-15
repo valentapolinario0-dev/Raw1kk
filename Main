@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<pre id="script"></pre>
+
+<script>
+
+let p=location.pathname.split("lua.")[1]
+
+let s=localStorage.getItem("lua_"+p)
+
+document.body.innerText=s||"Script não encontrado"
+
+</script>
+
+</body>
+</html>
